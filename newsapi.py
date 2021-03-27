@@ -5,7 +5,7 @@ from datetime import datetime
 
 class NewsApi:
     def __init__(self):
-        self.api_key = '26db25030c8a456aa45c9577b89bfd4b'
+        self.api_key = '80ecc87904c345b199ba7c3978bc4377'
 
     def get_date(self, days):
         today = str(datetime.today()).split()[0]
