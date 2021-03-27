@@ -1,7 +1,9 @@
 aniso8601==9.0.1
 click==7.1.2
 Flask==1.1.2
+Flask-Gunicorn==0.1.1
 Flask-RESTful==0.3.8
+gunicorn==20.1.0
 itsdangerous==1.1.0
 Jinja2==2.11.3
 MarkupSafe==1.1.1
