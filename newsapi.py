@@ -25,6 +25,4 @@ class NewsApi:
         response = json.loads(
             requests.get(f'https://newsapi.org/v2/everything?q={topic}&from={yesterday}&to={today}&sortBy=popularity&apiKey={self.api_key}').content)
         titles = [article['title'] for article in response['articles']]
-        for title in titles:
-            print(title)
         return titles
