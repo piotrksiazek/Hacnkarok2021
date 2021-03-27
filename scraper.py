@@ -1,6 +1,7 @@
 from selenium import webdriver
 import os
 
+
 class Scraper:
     def __init__(self):
         # options.add_argument(f'user-agent={user_agent}')
@@ -19,12 +20,12 @@ class Scraper:
         self.options.add_argument('--no-sandbox')
 
         # for deployment
-        self.options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
-        self.driver = webdriver.Chrome(executable_path=os.environ.get('CHROMEDRIVER_PATH'), chrome_options=self.options)
+        # self.options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+        # self.driver = webdriver.Chrome(executable_path=os.environ.get('CHROMEDRIVER_PATH'), chrome_options=self.options)
 
         # for testing
-        # self.driver = webdriver.Chrome(executable_path="chromedriver.exe",
-        #                                options=self.options)
+        self.driver = webdriver.Chrome(executable_path="chromedriver.exe",
+                                       options=self.options)
 
         
     def get_world_population(self, driver):
