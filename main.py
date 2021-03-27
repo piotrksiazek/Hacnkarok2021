@@ -20,9 +20,9 @@ def world_population():
             'environment': news_api.get_about('environment'),
             'climate_change': news_api.get_about('climate')
         },
-        'government_society_finance': {
-            'government': news_api.get_about('government'),
-            'society': news_api.get_about('society'),
+        'politics_protests_finance': {
+            'politics': news_api.get_about('politics'),
+            'protests': news_api.get_about('protests'),
             'finance': news_api.get_about('finance')
         }
     }
