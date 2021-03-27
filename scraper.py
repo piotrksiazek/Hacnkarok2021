@@ -20,12 +20,12 @@ class Scraper:
         self.options.add_argument('--no-sandbox')
 
         # for deployment
-        self.options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
-        self.driver = webdriver.Chrome(executable_path=os.environ.get('CHROMEDRIVER_PATH'), chrome_options=self.options)
+        # self.options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+        # self.driver = webdriver.Chrome(executable_path=os.environ.get('CHROMEDRIVER_PATH'), chrome_options=self.options)
 
         # for testing
-        # self.driver = webdriver.Chrome(executable_path="chromedriver.exe",
-        #                                options=self.options)
+        self.driver = webdriver.Chrome(executable_path="chromedriver.exe",
+                                       options=self.options)
 
         
     def get_world_population(self, driver):
@@ -52,9 +52,27 @@ class Scraper:
         }
         return gae
 
+    def food(self, driver):
+        died_of_hunger = driver.find_elements_by_xpath('//*[@id="c32"]/div[1]/span[1]/span')[0].text
+        money_spent_on_obesity = driver.find_elements_by_xpath('//*[@id="c33"]/div[1]/span[1]/span')[0].text
+        money_spent_on_weight_loss = driver.find_elements_by_xpath('//*[@id="c34"]/div[1]/span[1]/span')[0].text
+        food = {
+            'died_of_hunger': died_of_hunger,
+            'money_spent_on_obesity': money_spent_on_obesity,
+            'money_spent_on_weight_loss': money_spent_on_weight_loss
+        }
+        return food
+
     def get_worldometers(self):
         self.driver.get('https://www.worldometers.info/')
         driver = self.driver
+
         population = self.get_world_population(driver)
         gae = self.government_and_economics(driver)
-        return {'population': population, 'government_and_economics': gae}
+        food = self.food(driver)
+
+        return {
+            'population': population,
+            'government_and_economics': gae,
+            'food': food
+        }
