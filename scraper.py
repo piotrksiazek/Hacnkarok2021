@@ -1,5 +1,5 @@
 from selenium import webdriver
-
+import os
 
 class Scraper:
     def __init__(self):
@@ -15,9 +15,17 @@ class Scraper:
         self.options.add_argument("--start-maximized")
         self.options.add_argument('--disable-gpu')
         self.options.add_argument('--disable-dev-shm-usage')
+        self.options.add_argument('--disable-dev-sh-usage')
         self.options.add_argument('--no-sandbox')
-        self.driver = webdriver.Chrome(executable_path="chromedriver.exe",
-                                       options=self.options)
+
+        # for deployment
+        self.options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+        self.driver = webdriver.Chrome(executable_path=os.environ.get('CHROMEDRIVER_PATH'), chrome_options=self.options)
+
+        # for testing
+        # self.driver = webdriver.Chrome(executable_path="chromedriver.exe",
+        #                                options=self.options)
+
         
     def get_world_population(self, driver):
         world_population = driver.find_element_by_css_selector('#c1 > div.counter-heading.inactive-header > span.counter-number > span').text
