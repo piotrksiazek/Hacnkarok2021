@@ -5,7 +5,7 @@ from picture import get_image_from_url, pixelate
 
 class NewsApi:
     def __init__(self):
-        self.api_key = '45d7b31ebfbc45fbad7522e15957a530'
+        self.api_key = '43a7e9fbcf9345c7bf1ffb42fd952456'
 
     def get_date(self, days):
         today = str(datetime.today()).split()[0]

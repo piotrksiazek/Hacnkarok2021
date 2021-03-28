@@ -34,5 +34,3 @@ def pixelate(input_file_path, output_file_path, pixel_size):
 
 def get_url(input_file_path, output_file_path, pixel_size, url):
     get_image_from_url(url, input_file_path)
-    # pixelate(input_file_path, output_file_path, pixel_size)
-    # return f'http://127.0.0.1:5000/static/{output_file_path}'
