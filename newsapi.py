@@ -26,7 +26,7 @@ class NewsApi:
             requests.get(f'https://newsapi.org/v2/top-headlines?q={topic}&from={yesterday}&to={today}&sortBy=popularity&apiKey={self.api_key}').content)
         titles = []
         picture_urls = []
-        processed_images = []
+        processed = []
         for article in response['articles']:
             titles.append(article['title'])
             picture_urls.append(article['urlToImage'])
@@ -37,9 +37,11 @@ class NewsApi:
                     try:
                         name = get_image_from_url(url, i)
                         pixelate(name, f'static/{name}', 5)
-                        picture_urls.append(f'static/{name}')
+                        processed.append(f'https://tarotscraper.herokuapp.com/static/{i}.png')
                     except requests.exceptions.MissingSchema:
+                        continue
+                    except ValueError:
                         continue
             
         titles = [article['title'] for article in response['articles']]
-        return titles, picture_urls
+        return titles, processed
